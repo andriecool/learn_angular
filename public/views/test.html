@@ -1,0 +1,21 @@
+<input type="search" class="form-control" placeholder="Search" ng-model="query">
+<div class="row">
+	<div class="col-sm-12">
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Body</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(k, v) in tests | filter: query" ng-click="show(v.id)">
+				<td>{{v.id}}</td>
+				<td>{{v.title}}</td>
+				<td>{{v.body}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "learn_angular",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Andri Yudatama <andri.yudatama@arrayinteractive.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "angular-route": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "angular-messages": "~1.4.8"
+  }
+}

@@ -5,16 +5,9 @@ var db = new Bourne('data.json');
 var router = express('router');
 
 router
-	// .use(function(req, res, next){
-	// 	if(!req.user) req.user = {id: 1};
-	// 	next();
-	// })
 	.use(bodyParser.json())
 	.route('/contact')
 		.get(function(req, res){
-			// db.find({userId: parseInt(req.user.id, 10)}, function(err, data){
-			// 	res.json(data);
-			// })
 			db.find(function(err, data){
 				res.json(data);
 			})

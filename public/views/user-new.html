@@ -1,0 +1,59 @@
+<form name="newUser" class="form-horizontal">
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>First Name</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="First Name" name="firstName" ng-model="user.firstName">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Last Name</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Last Name" name="lastName" ng-model="user.lastName">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Email</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" placeholder="Email" name="email" ng-model="user.email">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Phone</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="tel" class="form-control" placeholder="Phone Number" name="phone" ng-model="user.phone">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Cell</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="tel" class="form-control" placeholder="Cell Phone" name="cell" ng-model="user.cell">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Birthday</label>
+        </div>
+        <div class="col-sm-6">
+            <input type="date" class="form-control" placeholder="Birthday" name="birthday" ng-model="user.birthday">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-6 offset-2">
+            <button class="btn btn-primary" ng-click="save()">Save</button>
+            <button class="btn btn-default" ng-click="back()">Cancel</button>
+        </div>
+    </div>
+</form>
+<pre>
+    user = {{user | json}}
+</pre>

@@ -17,5 +17,18 @@ angular.module('ContactsApp',['ngRoute', 'ngResource', 'ngMessages'])
 				controller: 'TestDetailController',
 				templateUrl: 'views/test-detail.html'
 			})
+            .when('/user', {
+                controller: 'UserController',
+                templateUrl: 'views/user.html'
+            })
+            .when('/user/new',{
+                controller: 'UserNewController',
+                templateUrl: 'views/user-new.html'
+            })
+            .when('/user/:id',{
+                controller: 'UserDetailController',
+                templateUrl: 'views/user-detail.html'
+            })
+
 		$locationProvider.html5Mode(true);
 	});

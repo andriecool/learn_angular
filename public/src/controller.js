@@ -59,3 +59,48 @@ angular.module('ContactsApp')
 			$location.url('/test');
 		}
 	})
+
+    .controller('UserController', function($scope, $location, UserFactory){
+        $scope.$parent.title = "Users";
+        $scope.users = UserFactory.query();
+
+        $scope.show = function(id){
+            $location.url('/user/'+id)
+        }
+
+        $scope.add = function(){
+            $location.url('/user/new');
+        }
+    })
+
+    .controller('UserDetailController', function($scope, $location, UserFactory, $routeParams){
+        $scope.$parent.title = "User Detail";
+        $scope.user = UserFactory.get({id: parseInt($routeParams.id)});
+
+        $scope.back = function(){
+            $location.url('/user');
+        }
+    })
+
+    .controller('UserNewController', function($scope, $location, UserFactory){
+        $scope.$parent.title = "Add New User";
+
+        $scope.user = new UserFactory({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            cell: '',
+            birthday: ''
+        })
+
+        $scope.save = function(){
+            $scope.user.$save();
+            $scope.reset();
+        }
+
+        $scope.back = function(){
+            $location.url('/user')
+        }
+
+    });

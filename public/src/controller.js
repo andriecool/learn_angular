@@ -71,6 +71,21 @@ angular.module('ContactsApp')
         $scope.add = function(){
             $location.url('/user/new');
         }
+
+        $scope.rowLimit = 10;
+        $scope.rowOffset = 0;
+
+        $scope.paginationPrev = function(){
+            if($scope.rowOffset > 0){
+                $scope.rowOffset = $scope.rowOffset - $scope.rowLimit;
+            }
+        }
+
+        $scope.paginationNext = function(){
+            if($scope.rowOffset < $scope.users.length){
+                $scope.rowOffset = $scope.rowOffset + $scope.rowLimit;
+            }
+        }
     })
 
     .controller('UserDetailController', function($scope, $location, UserFactory, $routeParams){

@@ -20,7 +20,8 @@ router
     .get(function(req, res){
         var limit = req.query.limit ? req.query.limit : 1000;
         var offset = req.query.offset ? req.query.offset : 0;
-        conn.query("select * from users limit "+offset+","+limit, function(err, rows){
+        //conn.query("select * from users limit "+offset+","+limit, function(err, rows){
+        conn.query("select * from users", function(err, rows){
             if(err) throw(err);
             res.json(rows);
         });

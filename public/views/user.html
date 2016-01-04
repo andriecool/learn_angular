@@ -1,7 +1,11 @@
 <input type="search" class="form-control" placeholder="Search" ng-model="query">
 <br>
 <div class="row">
-    <div class="col-sm-12"><button class="btn btn-primary" ng-click="add()">Add New</button></div>
+    <div class="col-sm-6"><button class="btn btn-primary" ng-click="add()">Add New</button></div>
+    <div class="col-sm-6" style="text-align: right;">
+        <button class="btn btn-default" ng-click="paginationPrev()">Prev</button>
+        <button class="btn btn-default" ng-click="paginationNext()">Next</button>
+    </div>
 </div>
 <br>
 <div class="row">
@@ -19,14 +23,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="(k, v) in users | filter: query" ng-click="show(v.userId)">
+            <tr ng-repeat="(k, v) in users | filter: query | limitTo: rowLimit: rowOffset" ng-click="show(v.userId)">
                 <td>{{v.userId}}</td>
                 <td>{{v.firstName}}</td>
                 <td>{{v.lastName}}</td>
                 <td>{{v.email}}</td>
                 <td>{{v.phone}}</td>
                 <td>{{v.cell}}</td>
-                <td>{{v.birthday}}</td>
+                <td>{{v.birthday | date:"dd-MM-yyyy"}}</td>
             </tr>
             </tbody>
         </table>

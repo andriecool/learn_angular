@@ -1,3 +1,8 @@
+<div class="row">
+    <div class="col-sm-12 message alert alert-{{alertClass}}">
+        {{message}}
+    </div>
+</div>
 <form name="newUser" class="form-horizontal">
     <div class="row form-group">
         <div class="col-sm-2">
@@ -51,9 +56,10 @@
         <div class="col-sm-6 offset-2">
             <button class="btn btn-primary" ng-click="save()">Save</button>
             <button class="btn btn-default" ng-click="back()">Cancel</button>
+            <button class="btn btn-danger" ng-if="deleteOption" ng-click="delete()">Delete</button>
         </div>
     </div>
 </form>
-<pre>
-    user = {{user | json}}
-</pre>
+<!--<pre>-->
+    <!--user = {{user | json}}-->
+<!--</pre>-->

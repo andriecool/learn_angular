@@ -1,7 +1,8 @@
 angular.module('ContactsApp')
 	
-	.controller('ListController', function($scope, Contact, $location){
-		$scope.$parent.title = "Contact";
+	.controller('ListController', function($scope, $rootScope, Contact, $location){
+        $rootScope.PAGE = 'contact';
+        $scope.$parent.title = "Contact";
 		$scope.contacts = Contact.query();
 		$scope.fields = ['firstName', 'lastName'];
 
@@ -18,8 +19,9 @@ angular.module('ContactsApp')
 		}
 	})
 	
-	.controller('NewController', function($scope, Contact, $location){
-		$scope.$parent.title = "Contact";
+	.controller('NewController', function($scope, $rootScope, Contact, $location){
+        $rootScope.PAGE = 'contact';
+        $scope.$parent.title = "Contact";
 		$scope.contact = new Contact({
 			firstName: 	['', 'text'],
 			lastName: 	['', 'text'],
@@ -29,7 +31,7 @@ angular.module('ContactsApp')
 			birthday: 	['', 'date'],
 			website: 	['', 'url'],
 			address: 	['', 'text']
-		})
+		});
 
 		$scope.save = function(){
 			if($scope.newContact.$invalid){
@@ -41,8 +43,9 @@ angular.module('ContactsApp')
 		}
 	})
 	
-	.controller('TestController', function($scope, $location, TestData){
-		$scope.$parent.title = "Test Page";
+	.controller('TestController', function($scope, $rootScope, $location, TestData){
+        $rootScope.PAGE = 'test';
+        $scope.$parent.title = "Test Page";
 		$scope.tests = TestData.query();
 
 		$scope.show = function(id){
@@ -50,8 +53,9 @@ angular.module('ContactsApp')
 		}
 	})
 
-	.controller('TestDetailController', function($scope, $location, TestData, $routeParams){
-		$scope.testId = $routeParams.id;
+	.controller('TestDetailController', function($scope, $rootScope, $location, TestData, $routeParams){
+        $rootScope.PAGE = 'test';
+        $scope.testId = $routeParams.id;
 		$scope.$parent.title = "Test Detail Page";
 		$scope.test = TestData.get({id: parseInt($scope.testId)});
 
@@ -60,7 +64,8 @@ angular.module('ContactsApp')
 		}
 	})
 
-    .controller('UserController', function($scope, $location, UserFactory){
+    .controller('UserController', function($scope, $rootScope, $location, UserFactory){
+        $rootScope.PAGE = 'user';
         $scope.$parent.title = "Users";
         $scope.users = UserFactory.query();
 
@@ -88,30 +93,41 @@ angular.module('ContactsApp')
         }
     })
 
-    .controller('UserDetailController', function($scope, $location, UserFactory, $routeParams){
+    .controller('UserDetailController', function($scope, $rootScope, $location, UserFactory, $routeParams){
+        $rootScope.PAGE = 'user';
         $scope.$parent.title = "User Detail";
         $scope.user = UserFactory.get({id: parseInt($routeParams.id)});
+        $scope.deleteOption = true;
+
+        $scope.save = function(){
+            $scope.user.$update({id: $scope.user.userId});
+            $scope.message = "User updated: "+$scope.user.firstName+" "+$scope.user.lastName;
+            $scope.alertClass = "success";
+        }
 
         $scope.back = function(){
+            $location.url('/user')
+        }
+
+        $scope.delete = function(){
+            $scope.user.$delete({id: $scope.user.userId});
+            //$scope.message = "Successfully deleted user "+$scope.user.firstName+" "+$scope.user.lastName;
+            //$scope.alertClass = "success";
             $location.url('/user');
         }
     })
 
-    .controller('UserNewController', function($scope, $location, UserFactory){
+    .controller('UserNewController', function($scope, $rootScope, $location, UserFactory){
+        $rootScope.PAGE = 'user';
         $scope.$parent.title = "Add New User";
-
-        $scope.user = new UserFactory({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            cell: '',
-            birthday: ''
-        })
+        $scope.user = new UserFactory();
 
         $scope.save = function(){
             $scope.user.$save();
-            $scope.reset();
+            $scope.message = "User added: "+$scope.user.firstName+" "+$scope.user.lastName;
+            $scope.alertClass = "success";
+            $scope.user = null;
+
         }
 
         $scope.back = function(){

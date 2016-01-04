@@ -30,7 +30,7 @@ router
         conn.query('insert into users set ?', req.body, function(err, result){
             if(err) throw err;
             result.data = req.body;
-            res.json(result);
+            //res.json(result);
         });
     });
 
@@ -44,7 +44,7 @@ router
     .put(function(req, res){
         conn.query('update users set ? where userId = '+req.params.id, req.body, function(err, result){
             result.data = req.body;
-            res.json(result);
+            res.json(req.body);
         })
     })
     .delete(function(req, res){

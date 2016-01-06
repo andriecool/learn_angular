@@ -1,4 +1,4 @@
-angular.module('ContactsApp')
+angular.module('myApp')
 	
 	.controller('ListController', function($scope, $rootScope, Contact, $location){
         $rootScope.PAGE = 'contact';
@@ -93,10 +93,11 @@ angular.module('ContactsApp')
         }
     })
 
-    .controller('UserDetailController', function($scope, $rootScope, $location, UserFactory, $routeParams){
+    .controller('UserDetailController', function($scope, $rootScope, $location, $filter, $log, UserFactory, $routeParams){
         $rootScope.PAGE = 'user';
         $scope.$parent.title = "User Detail";
         $scope.user = UserFactory.get({id: parseInt($routeParams.id)});
+        $log.info($scope.user);
         $scope.deleteOption = true;
 
         $scope.save = function(){

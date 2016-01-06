@@ -1,4 +1,4 @@
-angular.module('ContactsApp',['ngRoute', 'ngResource', 'ngMessages'])
+angular.module('myApp',['ngRoute', 'ngResource', 'ngMessages'])
 	.config(function($routeProvider, $locationProvider){
 		$routeProvider
 			.when('/contact', {
@@ -9,6 +9,8 @@ angular.module('ContactsApp',['ngRoute', 'ngResource', 'ngMessages'])
 				controller: 'NewController',
 				templateUrl: 'views/new.html'
 			})
+
+            // test
 			.when('/test',{
 				controller: 'TestController',
 				templateUrl: 'views/test.html'
@@ -17,6 +19,8 @@ angular.module('ContactsApp',['ngRoute', 'ngResource', 'ngMessages'])
 				controller: 'TestDetailController',
 				templateUrl: 'views/test-detail.html'
 			})
+
+            //user
             .when('/user', {
                 controller: 'UserController',
                 templateUrl: 'views/user.html'
@@ -28,6 +32,12 @@ angular.module('ContactsApp',['ngRoute', 'ngResource', 'ngMessages'])
             .when('/user/:id',{
                 controller: 'UserDetailController',
                 templateUrl: 'views/user-new.html'
+            })
+
+            // stream
+            .when('/stream',{
+                controller: 'StreamController',
+                templateUrl: 'stream.html'
             })
 
 		$locationProvider.html5Mode(true);
